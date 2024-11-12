@@ -1,21 +1,18 @@
-'use client'; // Directiva que indica que este es un componente de cliente
-
+'use client'; 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2'; // Importamos SweetAlert2
-
+import Swal from 'sweetalert2'; 
 export default function UpdateProduct({ params }) {
     const [product, setProduct] = useState({
         name: '',
         description: '',
         image: '',
-        identifier: '', // Campo para el identificador
-        _id: '' // ID del producto
+        identifier: '', 
+        _id: '' 
     });
 
     useEffect(() => {
         if (params?.id) {
-            // Obtener los datos del producto cuando se carga la página
             axios.get(`http://localhost:3000/products/${params.id}`).then((response) => {
                 setProduct(response.data);
             });
@@ -25,10 +22,8 @@ export default function UpdateProduct({ params }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Hacer el update del producto
             await axios.put(`http://localhost:3000/products/${params.id}`, product);
             
-            // Mostrar la alerta de éxito con SweetAlert
             Swal.fire({
                 title: 'Success!',
                 text: 'Product updated successfully!',
@@ -36,10 +31,8 @@ export default function UpdateProduct({ params }) {
                 confirmButtonText: 'OK'
             });
 
-            // Redirigir a la lista de productos después de actualizar
             window.location.href = '/';
         } catch (error) {
-            // Manejo de errores
             Swal.fire({
                 title: 'Error!',
                 text: 'Failed to update the product.',
@@ -59,7 +52,6 @@ export default function UpdateProduct({ params }) {
             <div className="p-6 bg-white shadow-md rounded-lg w-full max-w-lg">
                 <h1 className="text-2xl text-center mb-6">Update Product</h1>
                 <form onSubmit={handleSubmit}>
-                    {/* Campo para el identificador del producto */}
                     <div className="mb-4">
                         <label htmlFor="identifier" className="block text-sm font-medium">Product Identifier</label>
                         <input
@@ -72,7 +64,6 @@ export default function UpdateProduct({ params }) {
                         />
                     </div>
 
-                    {/* Campo para el nombre del producto */}
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-sm font-medium">Product Name</label>
                         <input
@@ -85,7 +76,6 @@ export default function UpdateProduct({ params }) {
                         />
                     </div>
 
-                    {/* Campo para la descripción */}
                     <div className="mb-4">
                         <label htmlFor="description" className="block text-sm font-medium">Description</label>
                         <textarea
@@ -97,7 +87,6 @@ export default function UpdateProduct({ params }) {
                         />
                     </div>
 
-                    {/* Campo para la imagen */}
                     <div className="mb-4">
                         <label htmlFor="image" className="block text-sm font-medium">Image URL</label>
                         <input
@@ -110,7 +99,6 @@ export default function UpdateProduct({ params }) {
                         />
                     </div>
 
-                    {/* Mostrar la imagen actual debajo del campo de URL */}
                     {product.image && (
                         <div className="mb-4">
                             <label className="block text-sm font-medium">Current Image</label>

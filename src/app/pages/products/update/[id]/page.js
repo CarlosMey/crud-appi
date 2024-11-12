@@ -1,4 +1,3 @@
-// src/app/products/update/[id]/page.js
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -7,7 +6,6 @@ export default function UpdateProduct({ params }) {
 
     useEffect(() => {
         if (params?.id) {
-            // Obtener los datos del producto cuando se carga la página
             axios.get(`http://localhost:3000/products/${params.id}`).then((response) => {
                 setProduct(response.data);
             });
@@ -18,7 +16,7 @@ export default function UpdateProduct({ params }) {
         e.preventDefault();
         await axios.put(`http://localhost:3000/products/${params.id}`, product);
         alert('Product updated successfully!');
-        window.location.href = '/'; // Redirigir a la lista de productos después de actualizar
+        window.location.href = '/'; 
     };
 
     const handleChange = (e) => {

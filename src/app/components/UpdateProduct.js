@@ -13,7 +13,6 @@ export default function UpdateProduct({ productId }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // Fetch the product data when the component is mounted
   useEffect(() => {
     const fetchProductData = async () => {
       try {
@@ -35,7 +34,6 @@ export default function UpdateProduct({ productId }) {
     e.preventDefault();
     setLoading(true);
 
-    // Validación de campos
     if (!identifier || !name || !description || !image) {
       alert('Por favor complete todos los campos');
       setLoading(false);
@@ -43,7 +41,6 @@ export default function UpdateProduct({ productId }) {
     }
 
     try {
-      // Realiza la solicitud PUT al backend para actualizar el producto
       const response = await axios.put(`http://localhost:3000/products/${productId}`, {
         identifier,
         name,
@@ -52,13 +49,11 @@ export default function UpdateProduct({ productId }) {
       });
 
       if (response.status === 200) {
-        // Mostrar el mensaje de éxito con SweetAlert
         Swal.fire({
           icon: 'success',
           title: '¡Producto actualizado!',
           text: 'El producto se ha actualizado correctamente.',
         }).then(() => {
-          // Redirigir a la vista de la tabla de productos después de la actualización
           router.push('/products');
         });
       }
@@ -85,7 +80,6 @@ export default function UpdateProduct({ productId }) {
             </div>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                {/* Identificador */}
                 <div className="flex flex-col">
                   <label className="leading-loose">Identificador</label>
                   <input
@@ -98,7 +92,6 @@ export default function UpdateProduct({ productId }) {
                   />
                 </div>
 
-                {/* Nombre del Producto */}
                 <div className="flex flex-col">
                   <label className="leading-loose">Nombre del Producto</label>
                   <input
@@ -111,7 +104,6 @@ export default function UpdateProduct({ productId }) {
                   />
                 </div>
 
-                {/* Descripción del Producto */}
                 <div className="flex flex-col">
                   <label className="leading-loose">Descripción</label>
                   <textarea
@@ -123,7 +115,6 @@ export default function UpdateProduct({ productId }) {
                   />
                 </div>
 
-                {/* Imagen (URL) */}
                 <div className="flex flex-col">
                   <label className="leading-loose">Imagen (URL)</label>
                   <input

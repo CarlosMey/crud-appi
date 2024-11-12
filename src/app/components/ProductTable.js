@@ -2,9 +2,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function ProductTable({ products, deleteProduct }) {
-    const [search, setSearch] = useState(''); // Estado para el filtro
+    const [search, setSearch] = useState(''); 
 
-    // Filtrar productos basado en el nombre y descripción
     const filteredProducts = products.filter(product => {
         return (
             product.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -13,13 +12,12 @@ export default function ProductTable({ products, deleteProduct }) {
     });
 
     const handleSearchChange = (e) => {
-        setSearch(e.target.value); // Actualizar el estado con el valor de búsqueda
+        setSearch(e.target.value); 
     };
 
     return (
         <section className="antialiased bg-gray-100 text-gray-600 min-h-screen px-4 py-8">
             <div className="w-full max-w-7xl mx-auto bg-white shadow-lg rounded-lg border border-gray-200">
-                {/* Header with title and add product button */}
                 <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
                     <h2 className="text-2xl font-semibold text-gray-800">Lista de Productos</h2>
                     <Link href="/products/add">
@@ -29,7 +27,6 @@ export default function ProductTable({ products, deleteProduct }) {
                     </Link>
                 </div>
                 
-                {/* Filtro de búsqueda */}
                 <div className="px-6 py-4">
                     <input
                         type="text"
@@ -40,7 +37,6 @@ export default function ProductTable({ products, deleteProduct }) {
                     />
                 </div>
 
-                {/* Tabla de productos */}
                 <div className="p-4">
                     <div className="overflow-x-auto">
                         <table className="table-auto w-full text-sm text-left">
@@ -73,14 +69,12 @@ export default function ProductTable({ products, deleteProduct }) {
                                             </td>
                                             <td className="p-3 text-center">
                                                 <div className="flex justify-center space-x-2">
-                                                    {/* Update button */}
                                                     <Link href={`/products/update/${product._id}`}>
                                                         <button className="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition duration-300">
                                                             Actualizar
                                                         </button>
                                                     </Link>
                                                     
-                                                    {/* Delete button */}
                                                     <button
                                                         onClick={() => deleteProduct(product._id)}
                                                         className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
