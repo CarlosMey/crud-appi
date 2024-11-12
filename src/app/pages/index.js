@@ -1,13 +1,10 @@
-'use client'; // Indica que este es un componente del cliente
-
-import { useState, useEffect } from 'react'; // Importación correcta
-import ProductTable from './components/ProductTable'; // Ruta correcta para tu componente
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ProductTable from '@/components/ProductTable';
 import Link from 'next/link';
-import './styles/globals.css';  // Asegúrate de que el archivo global.css esté aquí
 
 export default function Home() {
-    const [products, setProducts] = useState([]);  // Aquí ya puedes usar useState
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -23,7 +20,11 @@ export default function Home() {
     };
 
     return (
-        <div>
+        <div className="p-4">
+            <h1 className="text-2xl mb-4">Product List</h1>
+            <Link href="/add-product">
+                <button className="bg-green-500 text-white p-2 rounded mb-4">Add Product</button>
+            </Link>
             <ProductTable products={products} deleteProduct={deleteProduct} />
         </div>
     );
