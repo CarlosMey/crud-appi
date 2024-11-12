@@ -1,11 +1,12 @@
-
-
-
 Front End
 
-Next 15
-Axios
-Tailwind
+Technologies Used
+
+-Next 15
+-Axios
+-Tailwind
+
+## **Instalation Method**
 
 1. **First** you have to download the git repo using git clone command in your terminal.
 `git clone https://github.com/CarlosMey/crud-appi`
